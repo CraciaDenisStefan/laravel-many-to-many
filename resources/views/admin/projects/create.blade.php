@@ -43,6 +43,23 @@
             <div class="text-danger">{{$message}}</div>
             @enderror
         </div>
+
+        <div class="form-group m-3">
+            <p>Seleziona le tecnologie usate</p>
+            @foreach($technologies as $tech)
+                <div class="d-flex">
+                    <input type="checkbox" name="technologies[]" value="{{$tech->id}}" class="form-check-input" {{in_array($tech->id, old('technologies_id', [])) ? 'checked' : ''}}>
+                    <label class="control-label"> {{$tech->name}}</label>
+                </div>
+            @endforeach
+                @error('technologies_id')
+                <div class="text-danger">{{$message}}</div>
+                @enderror
+
+        </div>
+
+
+
         <div class="form-group m-3">
             <label class="control-label">Descrizione</label>
             <textarea name="description" id="description" class="form-control  @error('description')is-invalid @enderror">{{old('description')}}</textarea>

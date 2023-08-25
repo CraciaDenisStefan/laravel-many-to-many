@@ -29,6 +29,7 @@ class StoreProjectRequest extends FormRequest
            'description' => 'required',
            'cover_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:250',
            'type_id'    => 'required|exists:types,id',
+           'technologies_id'    => 'exist:technologies,id',
         ];
     }
 
@@ -44,6 +45,7 @@ class StoreProjectRequest extends FormRequest
             'cover_image.mimes' => 'Il file immagine deve essere in uno dei seguenti formati: jpeg, png, gif',
             'type_id.required'  => 'Devi selezionare una categoria',
             'type_id.exists'    => 'Categoria non valida',
+            'technologies_id.exist' => 'Tag non valido'
         ];
     }
 }
