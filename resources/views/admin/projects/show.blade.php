@@ -26,6 +26,16 @@
             </div>
         @endif
         </div>
+
+        @if($project->technologies->count() > 0)
+        <div>
+            Tecnologie usate:
+            @foreach($project->technologies as $tech)
+               <a class="d-flex" href="{{route('admin.technologies.show',$tech->id)}}">{{$tech->name}} </a> 
+            @endforeach
+        </div>
+    @endif
+    </div>
     </div>
     
 

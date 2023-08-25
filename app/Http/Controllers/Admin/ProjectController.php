@@ -86,7 +86,8 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
-        return view('admin.projects.edit' , compact('project','types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit' , compact('project','types','technologies'));
     }
 
     /**
@@ -113,6 +114,13 @@ class ProjectController extends Controller
 
         $project->update($form_data);
 
+        if($request->has('technologies')){
+            // $project->technologies()->detach();
+            // $project->technologies()->attach($request->technologies);
+
+            $project->technologies()->sync($request->technologies);
+        }
+
 
         return redirect()->route('admin.projects.index');
     }
@@ -126,7 +134,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         
-
+        $project->technologies()->sync([]);
         $imagePath = $project->cover_image;
         
         if (Storage::disk('public')->exists($imagePath)) {

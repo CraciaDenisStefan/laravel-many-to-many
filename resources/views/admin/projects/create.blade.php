@@ -48,7 +48,7 @@
             <p>Seleziona le tecnologie usate</p>
             @foreach($technologies as $tech)
                 <div class="d-flex">
-                    <input type="checkbox" name="technologies[]" value="{{$tech->id}}" class="form-check-input" {{in_array($tech->id, old('technologies_id', [])) ? 'checked' : ''}}>
+                    <input type="checkbox" name="technologies[]" value="{{$tech->id}}" class="form-check-input" {{in_array($tech->id, old('technologies', [])) ? 'checked' : ''}}>
                     <label class="control-label"> {{$tech->name}}</label>
                 </div>
             @endforeach
